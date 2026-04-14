@@ -1,0 +1,125 @@
+Create a modern, high-converting personal portfolio website for a Digital Marketing Specialist.
+
+Goal:
+This website should be designed to impress HR recruiters searching for Digital Marketing roles such as:
+- Performance Marketing Specialist
+- Digital Marketing Manager
+- Growth Marketer
+- PPC Specialist
+- B2B Lead Generation Expert
+
+Design Requirements:
+- Clean, premium, modern UI with dark + gradient theme
+- Smooth animations, hover effects, and scroll-based transitions
+- Use high-quality visuals, icons, and marketing-related illustrations
+- Fully responsive (mobile + desktop)
+- Fast loading and SEO optimized
+
+Tech Stack:
+- Next.js (latest version)
+- Tailwind CSS
+- Framer Motion (for animations)
+
+SEO Optimization:
+- Use high-ranking keywords throughout the site:
+  "Digital Marketing Expert", "Performance Marketing Specialist",
+  "B2B Lead Generation", "PPC Campaign Expert",
+  "Google Ads Specialist", "Meta Ads Expert",
+  "LinkedIn Lead Generation", "Conversion Rate Optimization",
+  "Growth Marketing", "ROI-driven marketing strategist"
+
+- Add meta tags, OpenGraph tags, structured data
+- Optimize headings (H1, H2, H3) with keywords
+- Ensure fast performance and accessibility
+
+Pages / Sections:
+
+1. Hero Section:
+- Strong headline:
+  "Driving High-Quality Leads & Scalable Growth Through Data-Driven Digital Marketing"
+- Subtext:
+  Highlight expertise in PPC, B2B lead generation, and conversion optimization
+- CTA buttons: "View My Work", "Hire Me"
+
+2. About Section:
+- Pull content from this website:
+  https://vamsikrishna27.framer.website/
+- Rewrite professionally with SEO keywords
+- Highlight experience, tools, and strengths
+
+3. Skills Section:
+- Google Ads
+- Meta Ads (Facebook & Instagram)
+- LinkedIn Ads
+- SEO & SEM
+- Conversion Rate Optimization (CRO)
+- Marketing Analytics
+- B2B Lead Generation
+
+Show as animated cards or progress indicators
+
+4. Experience / Case Studies (IMPORTANT):
+Create a dedicated section for "Tevatel"
+
+Include:
+- Generated high-quality B2B leads through PPC campaigns
+- Platforms used:
+  Google Ads, Meta Ads, LinkedIn Ads
+- Focus on:
+  Lead generation funnels
+  Audience targeting
+  Retargeting strategies
+  Conversion tracking
+
+Show sample metrics (visually attractive):
+- Conversion Rate Improvement (%)
+- Cost Per Lead Reduction (%)
+- Lead Volume Growth (%)
+
+Use charts, graphs, and animated counters
+
+5. Analytics & Tools Section:
+Show expertise in:
+- Google Analytics
+- Meta Business Suite
+- LinkedIn Campaign Manager
+- Conversion tracking & reporting dashboards
+
+Visualize with icons and dashboards
+
+6. Portfolio Section:
+- Showcase previous campaigns and results
+- Use cards with hover effects
+- Include:
+  Campaign objective
+  Strategy used
+  Result achieved
+
+7. Testimonials (optional but recommended):
+- Add 2–3 strong professional testimonials
+
+8. Contact Section:
+- Clean form with:
+  Name, Email, Message
+- Add CTA:
+  "Let's Grow Your Business 🚀"
+
+9. Footer:
+- Social links
+- Copyright
+- SEO-rich description
+
+Visual Enhancements:
+- Use marketing dashboard-style UI
+- Add gradient backgrounds
+- Include animated charts for performance metrics
+- Use icons from Lucide or similar
+
+Performance:
+- Optimize images
+- Lazy loading
+- Lighthouse score optimized
+
+Extra:
+- Add a floating "Hire Me" button
+- Add WhatsApp or email quick contact CTA

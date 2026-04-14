@@ -1,0 +1,14 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "skkh0v4u8-GzA4LtQ-iU5"
+uri = "file://artifacts/portfolio/src/assets/headshot.png"
+type = "image"
+title = "Professional headshot for Vamsi Krishna"
+
+[[generated]]
+id = "VeekiEfICY0TsWRHiKFIK"
+uri = "file://artifacts/portfolio/src/assets/dashboard.png"
+type = "image"
+title = "High-performance marketing dashboard"
