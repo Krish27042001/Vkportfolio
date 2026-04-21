@@ -27,23 +27,23 @@ export default function Contact() {
             </div>
 
             <div className="space-y-6">
-              <a href="mailto:hello@vamsikrishna.com" className="flex items-center gap-4 p-4 glass-card rounded-xl hover:bg-white/5 transition-colors group">
+              <a href="mailto:vamsikrishna27.m@gmail.com" className="flex items-center gap-4 p-4 glass-card rounded-xl hover:bg-white/5 transition-colors group">
                 <div className="p-3 bg-primary/10 text-primary rounded-lg group-hover:scale-110 transition-transform">
                   <Mail className="h-6 w-6" />
                 </div>
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Email Me</p>
-                  <p className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">hello@vamsikrishna.com</p>
+                  <p className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">vamsikrishna27.m@gmail.com</p>
                 </div>
               </a>
 
-              <a href="https://linkedin.com/in/vamsikrishna" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 glass-card rounded-xl hover:bg-white/5 transition-colors group">
+              <a href="https://www.linkedin.com/in/vamsi-krishna-167193238/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 glass-card rounded-xl hover:bg-white/5 transition-colors group">
                 <div className="p-3 bg-[#0A66C2]/10 text-[#0A66C2] rounded-lg group-hover:scale-110 transition-transform">
                   <Linkedin className="h-6 w-6" />
                 </div>
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Connect on LinkedIn</p>
-                  <p className="text-lg font-semibold text-foreground group-hover:text-[#0A66C2] transition-colors">linkedin.com/in/vamsikrishna</p>
+                  <p className="text-lg font-semibold text-foreground group-hover:text-[#0A66C2] transition-colors">linkedin.com/in/vamsi-krishna-167193238</p>
                 </div>
               </a>
             </div>
