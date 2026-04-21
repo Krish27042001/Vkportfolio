@@ -16,6 +16,7 @@ import Testimonials from "@/components/sections/Testimonials";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import FloatingCTA from "@/components/sections/FloatingCTA";
+import Header from "@/components/sections/Header";
 
 const queryClient = new QueryClient();
 
@@ -38,7 +39,9 @@ function Home() {
       <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none fixed" />
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background pointer-events-none fixed" />
 
-      <main className="relative z-10 flex flex-col items-center w-full overflow-hidden">
+      <Header />
+
+      <main className="relative z-10 flex flex-col items-center w-full overflow-hidden pt-16">
         <Hero />
         <About />
         <Skills />
@@ -48,7 +51,11 @@ function Home() {
         <Testimonials />
         <Contact />
       </main>
-      
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-12">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+      </div>
+
       <Footer />
       <FloatingCTA />
     </div>

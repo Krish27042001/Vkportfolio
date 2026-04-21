@@ -10,7 +10,7 @@ export default function Footer() {
         </div>
         
         <div className="flex items-center gap-4">
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-primary/20 hover:text-primary transition-colors" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/vamsi-krishna-167193238/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-primary/20 hover:text-primary transition-colors" aria-label="LinkedIn">
             <Linkedin className="h-5 w-5" />
           </a>
           <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-primary/20 hover:text-primary transition-colors" aria-label="Twitter">
