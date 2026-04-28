@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "About", href: "#about" },
+  { label: "About Me", href: "#about me" },
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Portfolio", href: "#portfolio" },
@@ -50,7 +50,7 @@ export default function Header() {
           className="font-bold text-lg tracking-tight"
           data-testid="link-logo"
         >
-          Vamsi<span className="text-primary">.</span>
+          VAMSI KRISHNA M<span className="text-primary"></span>
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -87,7 +87,11 @@ export default function Header() {
           aria-label="Toggle menu"
           data-testid="button-mobile-menu"
         >
-          {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {mobileOpen ? (
+            <X className="h-5 w-5" />
+          ) : (
+            <Menu className="h-5 w-5" />
+          )}
         </button>
       </div>
 
