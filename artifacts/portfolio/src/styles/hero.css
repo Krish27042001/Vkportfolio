@@ -1,0 +1,175 @@
+/* ===========================
+   Hero — Scroll Shrink + Lando Layout
+   =========================== */
+
+/* 200vh gives scroll room for the animation */
+.hero-track {
+  position: relative;
+  height: 200vh;
+  background-color: var(--color-background);
+}
+
+/* Sticky viewport panel */
+.hero-sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-background);
+}
+
+/* ===========================
+   Photo Frame
+   JS controls width/height/borderRadius on scroll
+   Starts 100% x 100% (full screen), shrinks to centre card
+   =========================== */
+
+.hero-photo-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+  /* Smooth transition between JS-set values */
+  transition: width 0.05s linear, height 0.05s linear,
+              border-radius 0.05s linear, box-shadow 0.05s linear;
+}
+
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* Gradient fade at bottom when full screen */
+.hero-photo-vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0,0,0,0.75) 100%
+  );
+  pointer-events: none;
+}
+
+/* ===========================
+   Scroll hint (shown on full-screen image)
+   =========================== */
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 6vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  margin: 0;
+  white-space: nowrap;
+  text-shadow: 0 0 20px rgba(139,92,246,0.8);
+  animation: hintFloat 2.5s ease-in-out infinite;
+}
+
+@keyframes hintFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0);    opacity: 0.85; }
+  50%       { transform: translateX(-50%) translateY(-5px); opacity: 1;    }
+}
+
+/* ===========================
+   Ticker Text
+   Fades in after image shrinks
+   =========================== */
+
+.hero-ticker-wrap {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-ticker-wrap--top    { top: 14%; }
+.hero-ticker-wrap--bottom { bottom: 14%; }
+
+.hero-ticker {
+  display: flex;
+  white-space: nowrap;
+  width: max-content;
+  animation: tickerScroll 22s linear infinite;
+}
+
+.hero-ticker--reverse {
+  animation: tickerScrollReverse 26s linear infinite;
+}
+
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes tickerScrollReverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+.hero-ticker-item {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 9vw, 120px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.07);
+  padding-right: 3vw;
+  line-height: 1;
+  user-select: none;
+}
+
+.hero-ticker-dot {
+  color: rgba(139,92,246,0.2);
+  font-size: 0.45em;
+  vertical-align: middle;
+}
+
+/* ===========================
+   Signature Image
+   Appears over everything once image is small
+   =========================== */
+
+.hero-signature {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  z-index: 3;
+  pointer-events: none;
+  filter:
+    drop-shadow(0 0 16px rgba(168,85,247,0.95))
+    drop-shadow(0 0 40px rgba(139,92,246,0.7));
+}
+
+
+/* ===========================
+   Responsive
+   =========================== */
+
+@media (max-width: 768px) {
+  .hero-ticker-item         { font-size: 42px; }
+  .hero-ticker-wrap--top    { top: 10%; }
+  .hero-ticker-wrap--bottom { bottom: 10%; }
+  .hero-signature           { width: 90vw; }
+}

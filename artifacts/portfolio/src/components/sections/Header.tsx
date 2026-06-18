@@ -1,128 +1,119 @@
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import "../../styles/header.css";
 
-const navLinks = [
-  { label: "About Me", href: "#about me" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "Contact", href: "#contact" },
+const navItems = [
+  { label: "About",      href: "about"      },
+  { label: "Skills",     href: "skills"     },
+  { label: "Experience", href: "experience" },
+  { label: "Portfolio",  href: "portfolio"  },
+  { label: "Contact Me", href: "contact"    },
 ];
 
-export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+interface HeaderProps {
+  showNav?: boolean;
+}
+
+function TypedLabel({ text, startDelay }: { text: string; startDelay: number }) {
+  const [displayed, setDisplayed] = useState("");
+  const [started,   setStarted]   = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    setDisplayed(""); setStarted(false);
+    const t = setTimeout(() => setStarted(true), startDelay);
+    return () => clearTimeout(t);
+  }, [startDelay]);
+
+  useEffect(() => {
+    if (!started || displayed.length >= text.length) return;
+    const t = setTimeout(() =>
+      setDisplayed(text.slice(0, displayed.length + 1)), 38);
+    return () => clearTimeout(t);
+  }, [started, displayed, text]);
+
+  return (
+    <span className="header-nav-typed">
+      {displayed}
+      {displayed.length < text.length && (
+        <span className="header-nav-cursor">|</span>
+      )}
+    </span>
+  );
+}
+
+export default function Header({ showNav = true }: HeaderProps) {
+  const [pastHero, setPastHero] = useState(false);
+
+  const scrollTo = (id: string) =>
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const track = document.querySelector(".hero-track") as HTMLElement | null;
+      if (!track) return;
+      setPastHero(track.getBoundingClientRect().bottom <= 64);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNav = (href: string) => {
-    setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  const getDelay = (index: number) => {
+    let delay = 0;
+    for (let i = 0; i < index; i++)
+      delay += navItems[i].label.length * 38 + 120;
+    return delay;
   };
 
   return (
-    <motion.header
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.4 }}
-      className={`fixed top-1 left-0 right-0 z-40 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/70 backdrop-blur-xl border-b border-white/10"
-          : "bg-transparent border-b border-transparent"
-      }`}
+    <header
+      className={`header${showNav ? " header--with-nav" : ""}${pastHero ? " header--scrolled" : ""}`}
       data-testid="site-header"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 h-16 flex items-center justify-between">
-        <a
-          href="#top"
-          onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
-          className="font-bold text-lg tracking-tight"
-          data-testid="link-logo"
-        >
-          VAMSI KRISHNA M<span className="text-primary"></span>
-        </a>
+      <div className="header-inner">
 
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
+        {/* Name — only visible after hero is scrolled past */}
+        <AnimatePresence>
+          {pastHero && (
+            <motion.a
+              key="logo"
+              href="#top"
               onClick={(e) => {
                 e.preventDefault();
-                handleNav(link.href);
+                window.scrollTo({ top: 0, behavior: "smooth" });
               }}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              data-testid={`link-nav-${link.label.toLowerCase()}`}
+              className="header-logo"
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
             >
-              {link.label}
-            </a>
-          ))}
+              <span>VAMSI<span className="header-logo-accent"> KRISHNA</span></span>
+            </motion.a>
+          )}
+        </AnimatePresence>
+
+        {/* Nav */}
+        <nav className="header-nav">
+          <AnimatePresence>
+            {showNav && navItems.map((item, i) => (
+              <motion.button
+                key={item.href}
+                className="header-nav-link"
+                onClick={() => scrollTo(item.href)}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.1, delay: getDelay(i) / 1000 }}
+              >
+                <TypedLabel text={item.label} startDelay={getDelay(i)} />
+                <span className="header-nav-arrow">▼</span>
+              </motion.button>
+            ))}
+          </AnimatePresence>
         </nav>
 
-        <div className="hidden md:block">
-          <Button
-            size="sm"
-            onClick={() => handleNav("#contact")}
-            className="bg-primary hover:bg-primary/90"
-            data-testid="button-header-hire"
-          >
-            Hire Me
-          </Button>
-        </div>
-
-        <button
-          className="md:hidden p-2 rounded-md hover:bg-white/5"
-          onClick={() => setMobileOpen((v) => !v)}
-          aria-label="Toggle menu"
-          data-testid="button-mobile-menu"
-        >
-          {mobileOpen ? (
-            <X className="h-5 w-5" />
-          ) : (
-            <Menu className="h-5 w-5" />
-          )}
-        </button>
       </div>
-
-      {mobileOpen && (
-        <div className="md:hidden border-t border-white/10 bg-background/95 backdrop-blur-xl">
-          <nav className="px-6 py-4 flex flex-col gap-3">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNav(link.href);
-                }}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground py-2"
-                data-testid={`link-mobile-${link.label.toLowerCase()}`}
-              >
-                {link.label}
-              </a>
-            ))}
-            <Button
-              size="sm"
-              onClick={() => handleNav("#contact")}
-              className="bg-primary hover:bg-primary/90 mt-2"
-              data-testid="button-mobile-hire"
-            >
-              Hire Me
-            </Button>
-          </nav>
-        </div>
-      )}
-    </motion.header>
+    </header>
   );
 }

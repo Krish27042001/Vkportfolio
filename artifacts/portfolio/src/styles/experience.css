@@ -1,0 +1,218 @@
+/* ===========================
+   Experience Section
+   =========================== */
+
+.experience-section {
+  width: 100%;
+  padding: 96px 24px;
+  background-color: color-mix(in srgb, var(--background) 50%, transparent);
+  position: relative;
+  z-index: 10;
+}
+
+@media (min-width: 1024px) {
+  .experience-section {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
+.experience-container {
+  max-width: 1152px;
+  margin: 0 auto;
+}
+
+/* ===========================
+   Header
+   =========================== */
+
+.experience-header {
+  margin-bottom: 64px;
+}
+
+.experience-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background-color: color-mix(in srgb, var(--primary) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.experience-title {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+  .experience-title {
+    font-size: 48px;
+  }
+}
+
+.experience-title-accent {
+  color: var(--primary);
+}
+
+.experience-subtitle {
+  color: var(--muted-foreground);
+  max-width: 672px;
+}
+
+/* ===========================
+   Grid Layout
+   =========================== */
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+  margin-bottom: 64px;
+}
+
+@media (min-width: 1024px) {
+  .experience-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===========================
+   Left Column
+   =========================== */
+
+.experience-left {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.experience-challenge {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.experience-challenge-title {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.experience-challenge-text {
+  color: var(--muted-foreground);
+  line-height: 1.75;
+}
+
+/* ===========================
+   Stat Cards
+   =========================== */
+
+.experience-stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .experience-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.experience-stat-card {
+  /* glass-card styles */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.experience-stat-value {
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.experience-stat-value.green  { color: #34d399; } /* emerald-400 */
+.experience-stat-value.blue   { color: #60a5fa; } /* blue-400    */
+.experience-stat-value.purple { color: #c084fc; } /* purple-400  */
+
+.experience-stat-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ===========================
+   Chart Card
+   =========================== */
+
+.experience-chart-card {
+  /* glass-card styles */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+
+  border-radius: 16px;
+  padding: 24px;
+  height: 400px;
+  width: 100%;
+}
+
+.experience-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.experience-chart-title {
+  font-weight: 600;
+}
+
+.experience-chart-legend {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.experience-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.experience-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+.experience-legend-dot.leads { background-color: var(--primary); }
+.experience-legend-dot.cost  { background-color: #f87171; }
+
+.experience-chart-body {
+  width: 100%;
+  height: 300px;
+}

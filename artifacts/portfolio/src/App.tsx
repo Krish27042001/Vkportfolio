@@ -4,19 +4,19 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import { motion, useScroll, useSpring } from "framer-motion";
+import { useState, useEffect } from "react";
 
-// Import sections
-import Hero from "@/components/sections/Hero";
-import About from "@/components/sections/About";
-import Skills from "@/components/sections/Skills";
-import Experience from "@/components/sections/Experience";
-import Analytics from "@/components/sections/Analytics";
-import Portfolio from "@/components/sections/Portfolio";
+import Hero         from "@/components/sections/Hero";
+import About        from "@/components/sections/About";
+import Skills       from "@/components/sections/Skills";
+import Experience   from "@/components/sections/Experience";
+import Analytics    from "@/components/sections/Analytics";
+import Portfolio    from "@/components/sections/Portfolio";
 import Testimonials from "@/components/sections/Testimonials";
-import Contact from "@/components/sections/Contact";
-import Footer from "@/components/sections/Footer";
-import FloatingCTA from "@/components/sections/FloatingCTA";
-import Header from "@/components/sections/Header";
+import Contact      from "@/components/sections/Contact";
+import Footer       from "@/components/sections/Footer";
+import FloatingCTA  from "@/components/sections/FloatingCTA";
+import Header       from "@/components/sections/Header";
 
 const queryClient = new QueryClient();
 
@@ -25,31 +25,44 @@ function Home() {
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
-    restDelta: 0.001
+    restDelta: 0.001,
   });
+
+  const [pastHero, setPastHero] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Hero track is 200vh — show nav once past it
+      setPastHero(window.scrollY > window.innerHeight * 1.9);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/30">
-      {/* Progress bar */}
-      <motion.div 
+
+      <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-primary origin-left z-50"
         style={{ scaleX }}
       />
-      
+
       <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none fixed" />
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background pointer-events-none fixed" />
 
-      <Header />
+      <Header showNav={pastHero} />
 
-      <main className="relative z-10 flex flex-col items-center w-full overflow-hidden pt-16">
+      {/* No pt-16 — Hero is full viewport from top */}
+      <main className="relative z-10 flex flex-col items-center w-full overflow-hidden">
         <Hero />
-        <About />
-        <Skills />
-        <Experience />
+        <div id="about">      <About />       </div>
+        <div id="skills">     <Skills />      </div>
+        <div id="experience"> <Experience />  </div>
         <Analytics />
-        <Portfolio />
+        <div id="portfolio">  <Portfolio />   </div>
         <Testimonials />
-        <Contact />
+        <div id="contact">    <Contact />     </div>
       </main>
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-12">
@@ -71,7 +84,7 @@ function Router() {
   );
 }
 
-function App() {
+export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -83,5 +96,3 @@ function App() {
     </QueryClientProvider>
   );
 }
-
-export default App;

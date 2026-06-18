@@ -1,0 +1,112 @@
+/* ===========================
+   Footer
+   =========================== */
+
+.footer {
+  width: 100%;
+  padding: 48px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--background);
+  position: relative;
+  z-index: 10;
+}
+
+@media (min-width: 1024px) {
+  .footer {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
+.footer-container {
+  max-width: 1152px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .footer-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/* ===========================
+   Branding
+   =========================== */
+
+.footer-brand {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer-brand {
+    text-align: left;
+  }
+}
+
+.footer-brand-name {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--foreground);
+}
+
+.footer-brand-tagline {
+  font-size: 14px;
+  color: var(--muted-foreground);
+  margin-top: 4px;
+}
+
+/* ===========================
+   Social Icons
+   =========================== */
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--foreground);
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.footer-social-link:hover {
+  background-color: color-mix(in srgb, var(--primary) 20%, transparent);
+  color: var(--primary);
+}
+
+.footer-social-link svg {
+  height: 20px;
+  width: 20px;
+}
+
+/* ===========================
+   Copyright
+   =========================== */
+
+.footer-copy {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer-copy {
+    text-align: right;
+  }
+}
+
+.footer-copy-text {
+  font-size: 14px;
+  color: var(--muted-foreground);
+}

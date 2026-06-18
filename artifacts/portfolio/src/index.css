@@ -1,11 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@500;600;700;800&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
-@plugin "@tailwindcss/typography";
 
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
+:root {
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
   --color-border: hsl(var(--border));
@@ -58,24 +55,24 @@
 }
 
 :root {
-  --background: 224 71% 4%;
+  --background: 0 0% 3%;
   --foreground: 210 40% 98%;
 
-  --card: 222 47% 11%;
+  --card: 0 0% 10%;
   --card-foreground: 210 40% 98%;
-  --card-border: 217 33% 17%;
+  --card-border: 0 0% 16%;
 
-  --popover: 222 47% 11%;
+  --popover: 0 0% 10%;
   --popover-foreground: 210 40% 98%;
-  --popover-border: 217 33% 17%;
+  --popover-border: 0 0% 16%;
 
   --primary: 252 100% 64%;
   --primary-foreground: 210 40% 98%;
 
-  --secondary: 217 33% 17%;
+  --secondary: 0 0% 16%;
   --secondary-foreground: 210 40% 98%;
 
-  --muted: 217 33% 17%;
+  --muted: 0 0% 16%;
   --muted-foreground: 215 20.2% 65.1%;
 
   --accent: 252 100% 64%;
@@ -84,8 +81,8 @@
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 210 40% 98%;
 
-  --border: 217 33% 17%;
-  --input: 217 33% 17%;
+  --border: 0 0% 16%;
+  --input: 0 0% 16%;
   --ring: 252 100% 64%;
 
   --chart-1: 252 100% 64%;
@@ -98,24 +95,24 @@
 }
 
 .dark {
-  --background: 224 71% 4%;
+  --background: 0 0% 3%;
   --foreground: 210 40% 98%;
 
-  --card: 222 47% 11%;
+  --card: 0 0% 10%;
   --card-foreground: 210 40% 98%;
-  --card-border: 217 33% 17%;
+  --card-border: 0 0% 16%;
 
-  --popover: 222 47% 11%;
+  --popover: 0 0% 10%;
   --popover-foreground: 210 40% 98%;
-  --popover-border: 217 33% 17%;
+  --popover-border: 0 0% 16%;
 
   --primary: 252 100% 64%;
   --primary-foreground: 210 40% 98%;
 
-  --secondary: 217 33% 17%;
+  --secondary: 0 0% 16%;
   --secondary-foreground: 210 40% 98%;
 
-  --muted: 217 33% 17%;
+  --muted: 0 0% 16%;
   --muted-foreground: 215 20.2% 65.1%;
 
   --accent: 252 100% 64%;
@@ -124,10 +121,10 @@
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 210 40% 98%;
 
-  --border: 217 33% 17%;
-  --input: 217 33% 17%;
+  --border: 0 0% 16%;
+  --input: 0 0% 16%;
   --ring: 252 100% 64%;
-  
+
   --chart-1: 252 100% 64%;
   --chart-2: 288 84% 63%;
   --chart-3: 199 89% 48%;
@@ -137,24 +134,35 @@
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: var(--color-border);
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tight;
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
   }
 }
 
 .glass-card {
-  @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.5)];
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 24px -8px rgba(0, 0, 0, 0.5);
 }
 
 .text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-400;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, var(--color-primary), #a855f7, #60a5fa);
 }
 
 .bg-grid-pattern {
@@ -163,3 +171,4 @@
     linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
 }
+
