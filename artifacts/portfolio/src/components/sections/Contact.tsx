@@ -17,10 +17,10 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <p className="contact-top-label">Contact</p>
+          {/* <p className="contact-top-label">Contact</p> */}
           <h2 className="contact-heading">
             Ready to Scale Your{" "}
-            <span className="text-gradient">Growth</span>
+            <span className="text-gradient">Growth</span>?
             
           </h2>
           <p className="contact-subtext">
