@@ -1,0 +1,263 @@
+/* ===========================
+   About Section
+   =========================== */
+
+.about-section {
+  width: 100%;
+  padding: 96px 24px;
+  background-color: color-mix(in srgb, var(--background) 50%, transparent);
+  position: relative;
+  z-index: 10;
+}
+
+@media (min-width: 1024px) {
+  .about-section {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
+.about-container {
+  max-width: 1152px;
+  margin: 0 auto;
+}
+
+/* ===========================
+   Header
+   =========================== */
+
+.about-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.about-title {
+  font-size: 30px;
+  font-weight: 1000;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .about-title {
+    font-size: 48px;
+    color:  gradiant(#6c47ff, #4f46e5);
+  }
+}
+
+.about-title-accent {
+  color: var(#6c47ff);
+}
+
+.about-subtitle {
+  color: var(--muted-foreground);
+  max-width: 672px;
+  margin: 0 auto;
+}
+
+/* ===========================
+   Grid Layout
+   =========================== */
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .about-grid {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+/* ===========================
+   Image Column
+   =========================== */
+
+.about-image-col {
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .about-image-col {
+    grid-column: span 5;
+  }
+}
+
+.about-image-wrapper {
+  aspect-ratio: 4 / 5;
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 8px;
+  position: relative;
+
+  /* glass-card styles */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.about-image-wrapper:hover .about-photo {
+  filter: grayscale(0%);
+}
+
+.about-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--background), transparent, transparent);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.about-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  filter: grayscale(20%);
+  transition: filter 0.5s ease;
+}
+
+.about-image-badge {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  z-index: 20;
+
+  /* glass-card styles */
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.about-badge-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.about-badge-role {
+  font-size: 12px;
+  color: var(--primary);
+  margin-top: 4px;
+}
+
+/* Decorative blurs */
+.about-blur-bottom {
+  position: absolute;
+  bottom: -24px;
+  left: -24px;
+  width: 128px;
+  height: 128px;
+  background-color: color-mix(in srgb, var(--primary) 20%, transparent);
+  border-radius: 9999px;
+  filter: blur(50px);
+  z-index: -10;
+}
+
+.about-blur-top {
+  position: absolute;
+  top: -24px;
+  right: -24px;
+  width: 128px;
+  height: 128px;
+  background-color: rgba(168, 85, 247, 0.2);
+  border-radius: 9999px;
+  filter: blur(50px);
+  z-index: -10;
+}
+
+/* ===========================
+   Content Column
+   =========================== */
+
+.about-content-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .about-content-col {
+    grid-column: span 7;
+  }
+}
+
+.about-content-heading {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.about-content-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: var(--muted-foreground);
+  line-height: 1.75;
+}
+
+/* ===========================
+   Skills Grid
+   =========================== */
+
+.about-skills-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+@media (min-width: 640px) {
+  .about-skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.about-skill-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.about-skill-icon {
+  height: 20px;
+  width: 20px;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.about-skill-label {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  .about-skill-label {
+    font-size: 16px;
+  }
+}
+
+/* ===========================
+   Quote
+   =========================== */
+
+.about-quote-wrapper {
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 32px;
+}
+
+.about-quote {
+  font-size: 20px;
+  font-style: italic;
+  font-family: serif;
+  color: rgba(255, 255, 255, 0.8);
+}

@@ -1,0 +1,207 @@
+/* ===========================
+   Skills Section
+   =========================== */
+
+.skills-section {
+  width: 100%;
+  padding: 96px 24px;
+  position: relative;
+  z-index: 10;
+}
+
+@media (min-width: 1024px) {
+  .skills-section {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
+.skills-container {
+  max-width: 1152px;
+  margin: 0 auto;
+}
+
+/* ===========================
+   Header
+   =========================== */
+
+.skills-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.skills-title {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+}
+
+@media (min-width: 768px) {
+  .skills-title {
+    font-size: 56px;
+  }
+}
+
+.skills-title-accent {
+  color: var(--primary);
+}
+
+.skills-subtitle {
+  color: var(--muted-foreground);
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* ===========================
+   Skills Grid
+   =========================== */
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ===========================
+   Skill Card — matches screenshot exactly
+   =========================== */
+
+.skills-card {
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 20px 22px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  cursor: default;
+}
+
+.skills-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* ===========================
+   Card Row — icon | name | pct
+   =========================== */
+
+.skills-card-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+/* ===========================
+   Icon Box
+   =========================== */
+
+.skills-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Brand SVG sizing */
+.brand-svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* ===========================
+   Card Text
+   =========================== */
+
+.skills-card-name {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--foreground);
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.skills-card-pct {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  flex-shrink: 0;
+}
+
+/* ===========================
+   Progress Bar — matches screenshot
+   =========================== */
+
+.skills-bar-track {
+  height: 6px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.06);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.skills-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  box-shadow: 0 0 8px currentColor;
+}
+
+/* ===========================
+   View More Button
+   =========================== */
+
+.skills-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+.skills-view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 36px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--color-primary), #a855f7, #60a5fa);
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  box-shadow: 0 0 24px rgba(100, 80, 255, 0.35);
+  transition: box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+.skills-view-btn:hover {
+  box-shadow: 0 0 40px rgba(100, 80, 255, 0.55);
+  transform: translateY(-2px);
+}
+
+.skills-view-btn:active {
+  transform: translateY(0);
+}

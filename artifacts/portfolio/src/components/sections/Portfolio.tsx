@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Target, Lightbulb, TrendingUp } from "lucide-react";
+import { Target, Lightbulb, TrendingUp } from "lucide-react";
+import "../../styles/portfolio.css";
 
 const campaigns = [
   {
@@ -8,7 +9,7 @@ const campaigns = [
     objective: "Scale qualified demos for enterprise software targeting CTOs.",
     strategy: "Created high-intent search campaigns paired with LinkedIn account-based marketing (ABM) targeting specific decision-makers with gated whitepapers.",
     result: "6x pipeline growth with a 45% decrease in cost per SQL.",
-    metrics: ["6x Pipeline", "-45% Cost/SQL"]
+    metrics: ["6x Pipeline", "-45% Cost/SQL"],
   },
   {
     title: "E-commerce Performance",
@@ -16,7 +17,7 @@ const campaigns = [
     objective: "Increase direct-to-consumer sales during peak Q4 season.",
     strategy: "Deployed dynamic product ads with personalized retargeting based on cart abandonment behavior. Scaled budget intelligently using automated bidding.",
     result: "Meta Ads ROAS of 4.8x and 320% overall revenue growth YoY.",
-    metrics: ["4.8x ROAS", "+320% Revenue"]
+    metrics: ["4.8x ROAS", "+320% Revenue"],
   },
   {
     title: "Brand Awareness & Retargeting",
@@ -24,25 +25,30 @@ const campaigns = [
     objective: "Build mindshare in a crowded market prior to a major product launch.",
     strategy: "Orchestrated a sequential video ad strategy to tell the brand story, followed by high-frequency display retargeting to maintain presence.",
     result: "Reached 2.1M targeted impressions while reducing blended CPM by 40%.",
-    metrics: ["2.1M Impressions", "-40% CPM"]
-  }
+    metrics: ["2.1M Impressions", "-40% CPM"],
+  },
 ];
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="w-full py-24 px-6 lg:px-12 bg-background/50 relative z-10">
-      <div className="max-w-6xl mx-auto">
-        <motion.div 
+    <section id="portfolio" className="portfolio-section">
+      <div className="portfolio-container">
+
+        {/* Header */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="portfolio-header"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">Campaign <span className="text-primary">Showcase</span></h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">Real campaigns. Real strategies. Real revenue impact.</p>
+          <h2 className="portfolio-title">
+            Campaign <span className="portfolio-title-accent">Showcase</span>
+          </h2>
+          <p className="portfolio-subtitle">Real campaigns. Real strategies. Real revenue impact.</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Grid */}
+        <div className="portfolio-grid">
           {campaigns.map((campaign, index) => (
             <motion.div
               key={campaign.title}
@@ -50,49 +56,52 @@ export default function Portfolio() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className="glass-card rounded-2xl overflow-hidden flex flex-col group hover:border-primary/50 transition-colors"
+              className="portfolio-card"
             >
-              <div className="p-8 flex-1 flex flex-col">
-                <div className="text-xs font-bold tracking-wider text-primary uppercase mb-2">{campaign.platform}</div>
-                <h3 className="text-xl font-bold mb-6">{campaign.title}</h3>
-                
-                <div className="space-y-6 flex-1">
+              <div className="portfolio-card-inner">
+
+                <div className="portfolio-card-platform">{campaign.platform}</div>
+                <h3 className="portfolio-card-title">{campaign.title}</h3>
+
+                <div className="portfolio-card-sections">
                   <div>
-                    <div className="flex items-center gap-2 mb-2 text-foreground/80">
-                      <Target className="h-4 w-4 text-blue-400" />
-                      <h4 className="text-sm font-semibold">Objective</h4>
+                    <div className="portfolio-card-section-label">
+                      <Target className="portfolio-section-icon icon-blue" />
+                      <h4>Objective</h4>
                     </div>
-                    <p className="text-sm text-muted-foreground">{campaign.objective}</p>
+                    <p className="portfolio-card-section-text">{campaign.objective}</p>
                   </div>
-                  
+
                   <div>
-                    <div className="flex items-center gap-2 mb-2 text-foreground/80">
-                      <Lightbulb className="h-4 w-4 text-amber-400" />
-                      <h4 className="text-sm font-semibold">Strategy</h4>
+                    <div className="portfolio-card-section-label">
+                      <Lightbulb className="portfolio-section-icon icon-amber" />
+                      <h4>Strategy</h4>
                     </div>
-                    <p className="text-sm text-muted-foreground">{campaign.strategy}</p>
+                    <p className="portfolio-card-section-text">{campaign.strategy}</p>
                   </div>
-                  
+
                   <div>
-                    <div className="flex items-center gap-2 mb-2 text-foreground/80">
-                      <TrendingUp className="h-4 w-4 text-emerald-400" />
-                      <h4 className="text-sm font-semibold">Result</h4>
+                    <div className="portfolio-card-section-label">
+                      <TrendingUp className="portfolio-section-icon icon-emerald" />
+                      <h4>Result</h4>
                     </div>
-                    <p className="text-sm text-muted-foreground">{campaign.result}</p>
+                    <p className="portfolio-card-section-text">{campaign.result}</p>
                   </div>
                 </div>
 
-                <div className="mt-8 pt-6 border-t border-white/10 flex gap-3">
-                  {campaign.metrics.map(metric => (
-                    <span key={metric} className="px-3 py-1 bg-white/5 rounded-full text-xs font-medium text-primary-foreground border border-white/10">
+                <div className="portfolio-card-metrics">
+                  {campaign.metrics.map((metric) => (
+                    <span key={metric} className="portfolio-metric-tag">
                       {metric}
                     </span>
                   ))}
                 </div>
+
               </div>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );

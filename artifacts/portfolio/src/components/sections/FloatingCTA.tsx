@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Mail } from "lucide-react";
+import "../../styles/floatingCTA.css";
 
 export default function FloatingCTA() {
   return (
@@ -8,16 +8,15 @@ export default function FloatingCTA() {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 2, duration: 0.5 }}
-      className="fixed bottom-6 right-6 z-50"
+      className="floating-cta"
     >
-      <Button 
-        size="lg" 
-        className="rounded-full shadow-[0_0_20px_rgba(100,100,255,0.4)] bg-primary hover:bg-primary/90 border border-primary-foreground/20"
-        onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+      <button
+        className="floating-cta-btn"
+        onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
       >
-        <Mail className="mr-2 h-4 w-4" />
+        <Mail className="floating-cta-icon" />
         Hire Me
-      </Button>
+      </button>
     </motion.div>
   );
 }
