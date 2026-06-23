@@ -56,7 +56,7 @@ export default function Hero() {
   }, []);
 
   return (
-    // 200vh scroll track so animation has room
+    // 240vh scroll track so animation has room + a hold pause before About kicks in
     <div className="hero-track">
       <div className="hero-sticky">
 
@@ -107,7 +107,7 @@ export default function Hero() {
             src={profileImg}
             alt="Vamsi Krishna"
             className="hero-photo"
-            loading="eager"
+            loading="lazy"
           />
           {/* Vignette only when full screen */}
           {!shrunk && <div className="hero-photo-vignette" />}
@@ -118,7 +118,7 @@ export default function Hero() {
               className="hero-scroll-hint"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.8 }}
+              transition={{ delay: 0.9, duration: 0.9 }} 
             >
               scroll to explore ↓
             </motion.p>

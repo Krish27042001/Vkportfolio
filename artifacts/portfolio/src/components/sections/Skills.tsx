@@ -105,7 +105,7 @@ export default function Skills() {
           className="skills-header"
         >
           <h2 className="skills-title">
-            Core <span className="skills-title-accent">Competencies</span>
+            Core <span className="text-gradient">Competencies</span>
           </h2>
           <p className="skills-subtitle">
             The technical stack and strategic skills I use to build scalable growth engines.

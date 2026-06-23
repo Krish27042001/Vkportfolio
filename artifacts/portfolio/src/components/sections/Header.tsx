@@ -88,7 +88,7 @@ export default function Header({ showNav = true }: HeaderProps) {
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.35, ease: "easeOut" }}
             >
-              <span>VAMSI<span className="header-logo-accent"> KRISHNA</span></span>
+              <span>V<span className="header-logo-accent">K</span></span>
             </motion.a>
           )}
         </AnimatePresence>

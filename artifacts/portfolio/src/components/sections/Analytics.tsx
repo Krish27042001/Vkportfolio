@@ -280,7 +280,7 @@ export default function Analytics() {
           className="analytics-header"
         >
           <h2 className="analytics-title">
-            Analytics & <span className="analytics-title-accent">Tools</span>
+            <span className="text-gradient">Analytics</span> & Tools
           </h2>
           <p className="analytics-subtitle">
             Mastery of the platforms that track, measure, automate, optimize, and scale modern digital marketing.

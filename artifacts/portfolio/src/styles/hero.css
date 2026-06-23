@@ -2,10 +2,10 @@
    Hero — Scroll Shrink + Lando Layout
    =========================== */
 
-/* 200vh gives scroll room for the animation */
+/* 240vh gives scroll room for the shrink animation + a hold pause before About kicks in */
 .hero-track {
   position: relative;
-  height: 200vh;
+  height: 240vh;
   background-color: var(--color-background);
 }
 
@@ -35,7 +35,6 @@
   height: 100%;
   overflow: hidden;
   flex-shrink: 0;
-  /* Smooth transition between JS-set values */
   transition: width 0.05s linear, height 0.05s linear,
               border-radius 0.05s linear, box-shadow 0.05s linear;
 }
@@ -161,7 +160,6 @@
     drop-shadow(0 0 16px rgba(168,85,247,0.95))
     drop-shadow(0 0 40px rgba(139,92,246,0.7));
 }
-
 
 /* ===========================
    Responsive

@@ -32,7 +32,6 @@ function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Hero track is 200vh — show nav once past it
       setPastHero(window.scrollY > window.innerHeight * 1.9);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -41,6 +40,7 @@ function Home() {
   }, []);
 
   return (
+    // Root div — no overflow hidden anywhere
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/30">
 
       <motion.div
@@ -53,17 +53,19 @@ function Home() {
 
       <Header showNav={pastHero} />
 
-      {/* No pt-16 — Hero is full viewport from top */}
-      <main className="relative z-10 flex flex-col items-center w-full overflow-hidden">
-        <Hero />
-        <div id="about">      <About />       </div>
-        <div id="skills">     <Skills />      </div>
-        <div id="experience"> <Experience />  </div>
-        <Analytics />
-        <div id="portfolio">  <Portfolio />   </div>
-        <Testimonials />
-        <div id="contact">    <Contact />     </div>
-      </main>
+      {/* Hero — full viewport */}
+      <Hero />
+
+      {/* About — horizontal scroll, lives at root level so sticky works */}
+      <About />
+
+      {/* Rest of page — normal vertical scroll */}
+      <div id="skills">      <Skills />      </div>
+      <div id="experience">  <Experience />  </div>
+      <Analytics />
+      <div id="portfolio">   <Portfolio />   </div>
+      <Testimonials />
+      <div id="contact">     <Contact />     </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-12">
         <div className="h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />

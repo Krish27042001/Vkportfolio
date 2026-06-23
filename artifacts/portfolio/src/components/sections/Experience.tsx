@@ -26,7 +26,7 @@ export default function Experience() {
         >
           <div className="experience-badge">Case Study</div>
           <h2 className="experience-title">
-            PPC Campaign Expert at <span className="experience-title-accent">Tevatel</span>
+           <span className="text-gradient">PPC Campaign Expert</span> at Tevatel
           </h2>
           <p className="experience-subtitle">
             Transforming a stagnant lead generation pipeline into a predictable, scalable revenue engine.
