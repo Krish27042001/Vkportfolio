@@ -6,17 +6,18 @@ import NotFound from "@/pages/not-found";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useState, useEffect } from "react";
 
-import Hero         from "@/components/sections/Hero";
-import About        from "@/components/sections/About";
-import Skills       from "@/components/sections/Skills";
-import Experience   from "@/components/sections/Experience";
-import Analytics    from "@/components/sections/Analytics";
-import Portfolio    from "@/components/sections/Portfolio";
-import Testimonials from "@/components/sections/Testimonials";
-import Contact      from "@/components/sections/Contact";
-import Footer       from "@/components/sections/Footer";
-import FloatingCTA  from "@/components/sections/FloatingCTA";
-import Header       from "@/components/sections/Header";
+import Hero                from "@/components/sections/Hero";
+import About               from "@/components/sections/About";
+import Skills              from "@/components/sections/Skills";
+import Experience          from "@/components/sections/Experience";
+import Analytics           from "@/components/sections/Analytics";
+import Portfolio           from "@/components/sections/Portfolio";
+import Testimonials        from "@/components/sections/Testimonials";
+import Contact             from "@/components/sections/Contact";
+import Footer              from "@/components/sections/Footer";
+import FloatingCTA         from "@/components/sections/FloatingCTA";
+import Header              from "@/components/sections/Header";
+import FunnelAndCaseStudies from "@/components/sections/FunnelAndCaseStudies";
 
 const queryClient = new QueryClient();
 
@@ -40,7 +41,6 @@ function Home() {
   }, []);
 
   return (
-    // Root div — no overflow hidden anywhere
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/30">
 
       <motion.div
@@ -56,13 +56,19 @@ function Home() {
       {/* Hero — full viewport */}
       <Hero />
 
-      {/* About — horizontal scroll, lives at root level so sticky works */}
+      {/* About — horizontal scroll */}
       <About />
 
       {/* Rest of page — normal vertical scroll */}
       <div id="skills">      <Skills />      </div>
       <div id="experience">  <Experience />  </div>
       <Analytics />
+
+      {/* Conversion Funnel + Case Studies */}
+      <div id="funnel">
+        <FunnelAndCaseStudies />
+      </div>
+
       <div id="portfolio">   <Portfolio />   </div>
       <Testimonials />
       <div id="contact">     <Contact />     </div>

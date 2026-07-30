@@ -27,10 +27,13 @@ export default function About() {
       const rect       = track.getBoundingClientRect();
       const trackH     = track.offsetHeight;
       const vh         = window.innerHeight;
-      const scrollable = trackH - vh;
+      const scrollable = Math.max(trackH - vh, 1);
+
+      // rect.top > 0  → About hasn't been reached yet, clamps to 0 via Math.max below
+      // rect.top very negative → About fully scrolled past, clamps to 1 via Math.min below
       const scrolled   = Math.max(0, -rect.top);
       const progress   = Math.min(1, scrolled / scrollable);
-      const maxShift   = rail.scrollWidth - window.innerWidth;
+      const maxShift   = Math.max(rail.scrollWidth - window.innerWidth, 0);
       targetX.current  = progress * maxShift;
     };
 

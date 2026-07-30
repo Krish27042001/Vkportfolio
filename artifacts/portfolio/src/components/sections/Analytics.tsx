@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Zap, ShoppingCart, Share2, Brain, Cpu, FileText,
@@ -309,8 +309,11 @@ export default function Analytics() {
         {/* Tools Grid */}
         <div className="analytics-grid">
           <AnimatePresence mode="popLayout">
-            {visible.map((tool, index) => {
+            {visible.map((tool, index: number) => {
               const IconComp = tool.icon;
+              // fix: some icons come from different libraries with incompatible types
+              // cast to any so they can be used as JSX components
+              const Icon = IconComp as any;
               const isBrand = brandSvgComponents.includes(IconComp as any);
               return (
                 <motion.div
@@ -329,9 +332,9 @@ export default function Analytics() {
                     style={{ backgroundColor: tool.bg }}
                   >
                     {isBrand ? (
-                      <IconComp />
+                      <Icon />
                     ) : (
-                      <IconComp
+                      <Icon
                         size={28}
                         color={(tool as any).iconColor || "#ffffff"}
                         aria-hidden="true"
@@ -359,7 +362,9 @@ export default function Analytics() {
               onClick={showAll ? handleShowLess : () => setShowAll(true)}
             >
               <span>{showAll ? "Show Less" : `View All ${filtered.length} Tools`}</span>
-              {showAll ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+              {showAll
+                ? React.createElement(ChevronUp as any, { size: 18 })
+                : React.createElement(ChevronDown as any, { size: 18 })}
             </button>
           </motion.div>
         )}

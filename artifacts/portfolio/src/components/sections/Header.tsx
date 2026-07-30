@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import "../../styles/header.css";
+import logoVK from "../../assets/logo_VK.png";
 
 const navItems = [
   { label: "About",      href: "about"      },
@@ -14,43 +15,21 @@ interface HeaderProps {
   showNav?: boolean;
 }
 
-function TypedLabel({ text, startDelay }: { text: string; startDelay: number }) {
-  const [displayed, setDisplayed] = useState("");
-  const [started,   setStarted]   = useState(false);
-
-  useEffect(() => {
-    setDisplayed(""); setStarted(false);
-    const t = setTimeout(() => setStarted(true), startDelay);
-    return () => clearTimeout(t);
-  }, [startDelay]);
-
-  useEffect(() => {
-    if (!started || displayed.length >= text.length) return;
-    const t = setTimeout(() =>
-      setDisplayed(text.slice(0, displayed.length + 1)), 38);
-    return () => clearTimeout(t);
-  }, [started, displayed, text]);
-
-  return (
-    <span className="header-nav-typed">
-      {displayed}
-      {displayed.length < text.length && (
-        <span className="header-nav-cursor">|</span>
-      )}
-    </span>
-  );
-}
-
 export default function Header({ showNav = true }: HeaderProps) {
   const [pastHero, setPastHero] = useState(false);
 
   const scrollTo = (id: string) =>
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
+  // Fire once the hero-track bottom edge clears the header height (64px)
   useEffect(() => {
     const handleScroll = () => {
       const track = document.querySelector(".hero-track") as HTMLElement | null;
-      if (!track) return;
+      if (!track) {
+        // fallback: use viewport height if hero-track doesn't exist
+        setPastHero(window.scrollY > window.innerHeight * 0.9);
+        return;
+      }
       setPastHero(track.getBoundingClientRect().bottom <= 64);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -58,62 +37,149 @@ export default function Header({ showNav = true }: HeaderProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const getDelay = (index: number) => {
-    let delay = 0;
-    for (let i = 0; i < index; i++)
-      delay += navItems[i].label.length * 38 + 120;
-    return delay;
+  // Framer Motion variants
+  const headerVariants = {
+    hidden: {
+      y: -80,
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+    exit: {
+      y: -80,
+      opacity: 0,
+      transition: {
+        duration: 0.3,
+        ease: "easeIn",
+      },
+    },
+  };
+
+  const navContainerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.07,
+        delayChildren: 0.15,
+      },
+    },
+    exit: {
+      transition: {
+        staggerChildren: 0.04,
+        staggerDirection: -1,
+      },
+    },
+  };
+
+  const navItemVariants = {
+    hidden: {
+      opacity: 0,
+      y: -12,
+      filter: "blur(4px)",
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: {
+        duration: 0.4,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -8,
+      filter: "blur(4px)",
+      transition: {
+        duration: 0.2,
+        ease: "easeIn",
+      },
+    },
+  };
+
+  const logoVariants = {
+    hidden:  { opacity: 0, scale: 0.85, rotate: -6 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      rotate: 0,
+      transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.85,
+      rotate: -6,
+      transition: { duration: 0.25, ease: "easeIn" },
+    },
   };
 
   return (
-    <header
-      className={`header${showNav ? " header--with-nav" : ""}${pastHero ? " header--scrolled" : ""}`}
-      data-testid="site-header"
-    >
-      <div className="header-inner">
+    <AnimatePresence>
+      {pastHero && (
+        <motion.header
+          key="site-header"
+          className="header header--with-nav header--scrolled"
+          data-testid="site-header"
+          variants={headerVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+        >
+          <div className="header-inner">
 
-        {/* Name — only visible after hero is scrolled past */}
-        <AnimatePresence>
-          {pastHero && (
+            {/* ── Logo ── */}
             <motion.a
-              key="logo"
               href="#top"
               onClick={(e) => {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
               className="header-logo"
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.35, ease: "easeOut" }}
+              variants={logoVariants}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
             >
-              <span>V<span className="header-logo-accent">K</span></span>
+              <img
+                src={logoVK}
+                alt="Vamsi Krishna M. logo"
+                className="header-logo-img"
+              />
             </motion.a>
-          )}
-        </AnimatePresence>
 
-        {/* Nav */}
-        <nav className="header-nav">
-          <AnimatePresence>
-            {showNav && navItems.map((item, i) => (
-              <motion.button
-                key={item.href}
-                className="header-nav-link"
-                onClick={() => scrollTo(item.href)}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.1, delay: getDelay(i) / 1000 }}
+            {/* ── Nav ── */}
+            <nav className="header-nav" aria-label="Main navigation">
+              <motion.div
+                className="header-nav-items"
+                variants={navContainerVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
               >
-                <TypedLabel text={item.label} startDelay={getDelay(i)} />
-                <span className="header-nav-arrow">▼</span>
-              </motion.button>
-            ))}
-          </AnimatePresence>
-        </nav>
+                {navItems.map((item) => (
+                  <motion.button
+                    key={item.href}
+                    className="header-nav-link"
+                    onClick={() => scrollTo(item.href)}
+                    variants={navItemVariants}
+                    whileHover={{ y: -1 }}
+                    whileTap={{ scale: 0.96 }}
+                  >
+                    {item.label}
+                    <span className="header-nav-arrow" aria-hidden="true">▼</span>
+                  </motion.button>
+                ))}
+              </motion.div>
+            </nav>
 
-      </div>
-    </header>
+          </div>
+        </motion.header>
+      )}
+    </AnimatePresence>
   );
 }
